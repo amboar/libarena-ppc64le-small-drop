@@ -1,0 +1,11 @@
+-tti
+-tbaa
+-scoped-noalias
+-assumption-cache-tracker
+-targetlibinfo
+-verify
+-simplifycfg
+-domtree
+-sroa
+-early-cse
+-lower-expect
