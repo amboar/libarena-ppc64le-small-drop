@@ -20,7 +20,8 @@
 -basiccg
 -globals-aa
 -prune-eh
--inline
+# -inline - disable, immediately broke
+-always-inline
 -functionattrs
 -domtree
 -sroa

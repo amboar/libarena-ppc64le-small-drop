@@ -7,13 +7,13 @@ BUGPOINT=${BUGPOINT:-/home/arj/rust-release/build/powerpc64le-unknown-linux-gnu/
 LLC=${LLC:-/home/arj/rust-release/build/powerpc64le-unknown-linux-gnu/llvm/bin/llc}
 OPT=${OPT:-/home/arj/rust-release/build/powerpc64le-unknown-linux-gnu/llvm/bin/opt}
 SRC=${SRC:-./arena.bc}
-ITER=${$1:-0}
+ITER=${1-0}
 
 $RUSTC --crate-name arena lib.rs --emit=dep-info,link --test -C metadata=75d30fcb0454b8ed --out-dir . -L dependency=/home/arj/small-drop/target/release/deps --emit llvm-bc
 
-P0="$(tr "$'\012'" " " < p0.0)"
-P1="$(tr "$'\012'" " " < p1.${ITER})"
-P2="$(tr "$'\012'" " " < p2.0)"
+P0="$(grep -v '^#' p0.0 | tr "$'\012'" " ")"
+P1="$(grep -v '^#' p1.${ITER} | tr "$'\012'" " ")"
+P2="$(grep -v '^#' p2.0 | tr "$'\012'" " ")"
 
 $OPT ${SRC}       -o ${SRC}.opt.0 $P0
 $OPT ${SRC}.opt.0 -o ${SRC}.opt.1 $P1
