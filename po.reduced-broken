@@ -1,0 +1,4 @@
+-sroa
+-simplifycfg
+-inline
+-instcombine
